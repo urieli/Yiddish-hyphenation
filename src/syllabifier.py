@@ -84,8 +84,8 @@ def syllabify(language, word) :
 	   (with optional stress numbers after vowels), or a Python list of phonemes,
 	   e.g. "B AE1 T" or ["B", "AE1", "T"]'''
 
-	if type(word) == str :
-		word = word.split()
+	# if type(word) == str :
+	# 	word = word.split()
 
 	syllables = [] # This is the returned data structure.
 
