@@ -8,13 +8,36 @@ Scripts to syllabify and hyphenate Yiddish text:
 
 Syllabification is phonemic, based on either (i) the Maximum Onset Principle, using the attested syllable onset clusters listed in Jacobs 2005 (pp. 115-7), or (ii) the syllabification algorithm of Yankev Viler (Jacobs 2005:125).
 
-Hyphenation is based on the recommendations published in the *Standardized Yiddish Orthography* (YIVO; paragraph 47), stating that hyphens should be inserted between prefixes/particles and roots but otherwise should follow syllable boundaries (whether acc. to the Maximum Onset Principle or Viler's algorithm, or something else, is not clear). These hyphenation rules have been supplemented by a few common-sense constraints (from discussion between Isaac L. Bleaman and Jamie Conway): (i) no word may have just a single letter (+ diacritic) before the first hyphen; (ii) no word may end in two or fewer characters (+ diacritics); (iii) if a word contains a character that signifies it comes from *loshn-koydesh* (בֿחכּשׂתּת), don't do any hyphenation at all.
+Hyphenation is based on the recommendations published in the _Standardized Yiddish Orthography_ (YIVO; paragraph 47), stating that hyphens should be inserted between prefixes/particles and roots but otherwise should follow syllable boundaries (whether acc. to the Maximum Onset Principle or Viler's algorithm, or something else, is not clear). These hyphenation rules have been supplemented by a few common-sense constraints (from discussion between Isaac L. Bleaman and Jamie Conway): (i) no word may have just a single letter (+ diacritic) before the first hyphen; (ii) no word may end in two or fewer characters (+ diacritics); (iii) if a word contains a character that signifies it comes from _loshn-koydesh_ (בֿחכּשׂתּת), don't do any hyphenation at all.
 
 Known problems, which require a list of exceptions to fix:
 
-* Words of Hebrew/Aramaic (*loshn-koydesh*) origin. It's not clear how best to hyphenate these in all cases, and the out-of-the-box syllabification algorithm is poor because these words are not spelled phonemically. As a result, we don't hyphenate any words that are clearly from *loshn-koydesh* based on the presence of certain characters: בֿחכּשׂתּת. But even this skips over *l"k* words that don't have such characters.
-* More to come. Please send me your feedback! I might produce an exception list myself if I have time and if there's interest.
+- Words of Hebrew/Aramaic (_loshn-koydesh_) origin. It's not clear how best to hyphenate these in all cases, and the out-of-the-box syllabification algorithm is poor because these words are not spelled phonemically. As a result, we don't hyphenate any words that are clearly from _loshn-koydesh_ based on the presence of certain characters: בֿחכּשׂתּת. But even this skips over _l"k_ words that don't have such characters.
+- More to come. Please send me your feedback! I might produce an exception list myself if I have time and if there's interest.
 
 Isaac L. Bleaman  
 University of California, Berkeley  
-bleaman@berkeley.edu  
+bleaman@berkeley.edu
+
+# Hassidic Yiddish hyphenation
+
+The script has been updated to enable hyphenation of standard text files in Hassidic Yiddish. This is mostly useful for generating artificially augmented hyphenated data.
+The syllable boundaries no longer attempt to capture all syllables, only places where a hyphen can be legally placed.
+
+This uses the modified `yiddish_syllable_boundaries.py` script, using the following commands:
+
+```shell
+cd src
+python yiddish_syllable_boundaries.py -i [INPUT_FILE] -o [OUTPUT_FILE] -c hyphenate -l [LINE_LENGTH_IN_CHARS]
+```
+
+Another command adds hyphenatable syllable boundaries using the vertical pipe |, for an input file containing one word per line:
+
+```shell
+cd src
+python yiddish_syllable_boundaries.py -i [INPUT_FILE] -o [OUTPUT_FILE] -c syllabify
+```
+
+Assaf Urieli
+Joliciel Informatique, Foix, France
+assaf.urieli@gmail.com
